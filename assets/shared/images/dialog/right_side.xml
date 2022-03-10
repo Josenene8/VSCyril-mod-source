@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="right_side.png">
+	<!-- Created with Adobe Animate version 21.0.9.42677 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="CASS_EXTRA_SMUG instance 10000" x="1" y="1" width="807" height="802"/>
+	<SubTexture name="PICO_approves instance 10000" x="834" y="1" width="396" height="487"/>
+	<SubTexture name="PICO_determined instance 10000" x="1256" y="1" width="374" height="478"/>
+	<SubTexture name="PICO_friends instance 10000" x="1" y="829" width="657" height="487"/>
+	<SubTexture name="PICO_greet instance 10000" x="684" y="829" width="464" height="487"/>
+	<SubTexture name="PICO_hand_pistols instance 10000" x="1174" y="829" width="428" height="487"/>
+	<SubTexture name="PICO_mic_throw instance 10000" x="1" y="1342" width="567" height="459"/>
+	<SubTexture name="PICO_panicking instance 10000" x="594" y="1342" width="450" height="466"/>
+	<SubTexture name="PICO_worried instance 10000" x="1070" y="1342" width="394" height="482"/>
+</TextureAtlas>

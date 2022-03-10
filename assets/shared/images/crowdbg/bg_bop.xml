@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="bg_bop2.png">
+	<!-- Created with Adobe Animate version 21.0.9.42677 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="1-2 song10000" x="1" y="1" width="1338" height="401" frameX="0" frameY="-28" frameWidth="1346" frameHeight="430"/>
+	<SubTexture name="1-2 song10001" x="1" y="1" width="1338" height="401" frameX="0" frameY="-28" frameWidth="1346" frameHeight="430"/>
+	<SubTexture name="1-2 song10002" x="1365" y="1" width="1339" height="405" frameX="-2" frameY="-24" frameWidth="1346" frameHeight="430"/>
+	<SubTexture name="1-2 song10003" x="1365" y="1" width="1339" height="405" frameX="-2" frameY="-24" frameWidth="1346" frameHeight="430"/>
+	<SubTexture name="1-2 song10004" x="2730" y="1" width="1341" height="425" frameX="-3" frameY="-4" frameWidth="1346" frameHeight="430"/>
+	<SubTexture name="1-2 song10005" x="4097" y="1" width="1342" height="428" frameX="-3" frameY="-2" frameWidth="1346" frameHeight="430"/>
+	<SubTexture name="1-2 song10006" x="5465" y="1" width="1340" height="430" frameX="-6" frameY="0" frameWidth="1346" frameHeight="430"/>
+	<SubTexture name="1-2 song10007" x="6831" y="1" width="1338" height="430" frameX="-8" frameY="0" frameWidth="1346" frameHeight="430"/>
+	<SubTexture name="1-2 song10008" x="6831" y="1" width="1338" height="430" frameX="-8" frameY="0" frameWidth="1346" frameHeight="430"/>
+	<SubTexture name="1-2 song10009" x="6831" y="1" width="1338" height="430" frameX="-8" frameY="0" frameWidth="1346" frameHeight="430"/>
+	<SubTexture name="1-2 song10010" x="6831" y="1" width="1338" height="430" frameX="-8" frameY="0" frameWidth="1346" frameHeight="430"/>
+	<SubTexture name="1-2 song10011" x="6831" y="1" width="1338" height="430" frameX="-8" frameY="0" frameWidth="1346" frameHeight="430"/>
+	<SubTexture name="1-2 song10012" x="6831" y="1" width="1338" height="430" frameX="-8" frameY="0" frameWidth="1346" frameHeight="430"/>
+	<SubTexture name="1-2 song10013" x="6831" y="1" width="1338" height="430" frameX="-8" frameY="0" frameWidth="1346" frameHeight="430"/>
+	<SubTexture name="3rd song10000" x="1" y="457" width="1391" height="591" frameX="0" frameY="-59" frameWidth="1391" frameHeight="651"/>
+	<SubTexture name="3rd song10001" x="1" y="457" width="1391" height="591" frameX="0" frameY="-59" frameWidth="1391" frameHeight="651"/>
+	<SubTexture name="3rd song10002" x="1418" y="457" width="1382" height="615" frameX="-2" frameY="-36" frameWidth="1391" frameHeight="651"/>
+	<SubTexture name="3rd song10003" x="1418" y="457" width="1382" height="615" frameX="-2" frameY="-36" frameWidth="1391" frameHeight="651"/>
+	<SubTexture name="3rd song10004" x="2826" y="457" width="1378" height="641" frameX="-3" frameY="-10" frameWidth="1391" frameHeight="651"/>
+	<SubTexture name="3rd song10005" x="4230" y="457" width="1380" height="649" frameX="-3" frameY="-2" frameWidth="1391" frameHeight="651"/>
+	<SubTexture name="3rd song10006" x="5636" y="457" width="1373" height="651" frameX="-6" frameY="0" frameWidth="1391" frameHeight="651"/>
+	<SubTexture name="3rd song10007" x="1" y="1134" width="1372" height="651" frameX="-8" frameY="0" frameWidth="1391" frameHeight="651"/>
+	<SubTexture name="3rd song10008" x="1399" y="1134" width="1370" height="651" frameX="-8" frameY="0" frameWidth="1391" frameHeight="651"/>
+	<SubTexture name="3rd song10009" x="2795" y="1134" width="1371" height="651" frameX="-8" frameY="0" frameWidth="1391" frameHeight="651"/>
+	<SubTexture name="3rd song10010" x="4192" y="1134" width="1369" height="651" frameX="-8" frameY="0" frameWidth="1391" frameHeight="651"/>
+	<SubTexture name="3rd song10011" x="1" y="1134" width="1372" height="651" frameX="-8" frameY="0" frameWidth="1391" frameHeight="651"/>
+	<SubTexture name="3rd song10012" x="5587" y="1134" width="1369" height="651" frameX="-8" frameY="0" frameWidth="1391" frameHeight="651"/>
+	<SubTexture name="3rd song10013" x="5587" y="1134" width="1369" height="651" frameX="-8" frameY="0" frameWidth="1391" frameHeight="651"/>
+</TextureAtlas>
