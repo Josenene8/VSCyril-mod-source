@@ -260,7 +260,7 @@ class PlayState extends MusicBeatState
 					d1ground.active = false;
 					add(d1ground);
 
-					boppers = new FlxSprite(40, 355);
+					var boppers:FlxSprite = new FlxSprite(40, 355);
 					boppers.frames = Paths.getSparrowAtlas('crowdbg/bg_bop');
 					boppers.animation.addByPrefix('bop', '1-2 song1', 24, false);
 					boppers.antialiasing = true;
@@ -310,7 +310,7 @@ class PlayState extends MusicBeatState
 					d1ground.active = false;
 					add(d1ground);
 
-					boppers = new FlxSprite(40, 125);
+					var boppers:FlxSprite = new FlxSprite(40, 125);
 					boppers.frames = Paths.getSparrowAtlas('crowdbg/bg_bop');
 					boppers.animation.addByPrefix('bop', '3rd song1', 24, false);
 					boppers.antialiasing = true;
