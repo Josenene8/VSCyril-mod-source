@@ -45,8 +45,25 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
+
+		@:privateAccess
+		{
+			trace("Loaded " + openfl.Assets.getLibrary("default").assetsLoaded + " assets (DEFAULT)");
+		}
 		
 		PlayerSettings.init();
+
+		#if windows
+		DiscordClient.initialize();
+
+		Application.current.onExit.add (function (exitCode) {
+			DiscordClient.shutdown();
+		 });
+		 
+		#end
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
