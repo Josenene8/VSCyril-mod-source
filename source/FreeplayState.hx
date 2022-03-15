@@ -1,8 +1,5 @@
 package;
 
-#if desktop
-import Discord.DiscordClient;
-#end
 import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -12,6 +9,11 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
+
+
+#if windows
+import Discord.DiscordClient;
+#end
 
 using StringTools;
 
@@ -35,53 +37,32 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
-		/*var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
+		var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
 
-			for (i in 0...initSonglist.length)
-			{
-				songs.push(new SongMetadata(initSonglist[i], 1, 'gf'));
-			}
-		 */
+		for (i in 0...initSonglist.length)
+		{
+			var data:Array<String> = initSonglist[i].split(':');
+			songs.push(new SongMetadata(data[0], Std.parseInt(data[2]), data[1]));
+		}
+
 		/* 
 			if (FlxG.sound.music != null)
 			{
 				if (!FlxG.sound.music.playing)
-					FlxG.sound.playMusic(Paths.music('turningPoint'));
+					FlxG.sound.playMusic(Paths.music('freakyMenu'));
 			}
 		 */
 
-		#if desktop
-		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Menus", null);
-		#end
+		 #if windows
+		 // Updating Discord Rich Presence
+		 DiscordClient.changePresence("In the Freeplay Menu", null);
+		 #end
 
-		var isDebug:Bool = true;
+		var isDebug:Bool = false;
 
 		#if debug
 		isDebug = true;
 		#end
-
-		if (StoryMenuState.weekUnlocked[7] || isDebug)
-			addWeek(['Rise', 'Pissed', 'Rebel'], 1, ['dad']);
-		/*
-			if (StoryMenuState.weekUnlocked[2] || isDebug)
-				addWeek(['Bopeebo', 'Fresh', 'Dadbattle'], 1, ['dad']);
-
-			if (StoryMenuState.weekUnlocked[2] || isDebug)
-				addWeek(['Spookeez', 'South', 'Monster'], 2, ['spooky']);
-
-			if (StoryMenuState.weekUnlocked[3] || isDebug)
-				addWeek(['Pico', 'Philly', 'Blammed'], 3, ['pico']);
-
-			if (StoryMenuState.weekUnlocked[4] || isDebug)
-				addWeek(['Satin-Panties', 'High', 'Milf'], 4, ['mom']);
-
-			if (StoryMenuState.weekUnlocked[5] || isDebug)
-				addWeek(['Cocoa', 'Eggnog', 'Winter-Horrorland'], 5, ['parents-christmas', 'parents-christmas', 'monster-christmas']);
-
-			if (StoryMenuState.weekUnlocked[6] || isDebug)
-				addWeek(['Senpai', 'Roses', 'Thorns'], 6, ['senpai', 'senpai', 'spirit']);
-		 */
 
 		// LOAD MUSIC
 
@@ -95,7 +76,7 @@ class FreeplayState extends MusicBeatState
 
 		for (i in 0...songs.length)
 		{
-			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
+			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false, true);
 			songText.isMenuItem = true;
 			songText.targetY = i;
 			grpSongs.add(songText);
@@ -157,6 +138,10 @@ class FreeplayState extends MusicBeatState
 			trace(md);
 		 */
 
+		 #if mobileC
+		 addVirtualPad(FULL, A_B);
+		 #end
+
 		super.create();
 	}
 
@@ -168,7 +153,7 @@ class FreeplayState extends MusicBeatState
 	public function addWeek(songs:Array<String>, weekNum:Int, ?songCharacters:Array<String>)
 	{
 		if (songCharacters == null)
-			songCharacters = ['bf'];
+			songCharacters = ['dad'];
 
 		var num:Int = 0;
 		for (song in songs)
@@ -221,14 +206,29 @@ class FreeplayState extends MusicBeatState
 
 		if (accepted)
 		{
-			var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
+			// pre lowercasing the song name (update)
+			var songLowercase = StringTools.replace(songs[curSelected].songName, " ", "-").toLowerCase();
+			switch (songLowercase) {
+				case 'dad-battle': songLowercase = 'dadbattle';
+				case 'philly-nice': songLowercase = 'philly';
+			}
+			// adjusting the highscore song name to be compatible (update)
+			// would read original scores if we didn't change packages
+			var songHighscore = StringTools.replace(songs[curSelected].songName, " ", "-");
+			switch (songHighscore) {
+				case 'Dad-Battle': songHighscore = 'Dadbattle';
+				case 'Philly-Nice': songHighscore = 'Philly';
+			}
+			
+			trace(songLowercase);
+
+			var poop:String = Highscore.formatSong(songHighscore, curDifficulty);
 
 			trace(poop);
-
-			PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
+			
+			PlayState.SONG = Song.loadFromJson(poop, songLowercase);
 			PlayState.isStoryMode = false;
 			PlayState.storyDifficulty = curDifficulty;
-
 			PlayState.storyWeek = songs[curSelected].week;
 			trace('CUR WEEK' + PlayState.storyWeek);
 			LoadingState.loadAndSwitchState(new PlayState());
@@ -244,8 +244,15 @@ class FreeplayState extends MusicBeatState
 		if (curDifficulty > 2)
 			curDifficulty = 0;
 
+		// adjusting the highscore song name to be compatible (changeDiff)
+		var songHighscore = StringTools.replace(songs[curSelected].songName, " ", "-");
+		switch (songHighscore) {
+			case 'Dad-Battle': songHighscore = 'Dadbattle';
+			case 'Philly-Nice': songHighscore = 'Philly';
+		}
+		
 		#if !switch
-		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
+		intendedScore = Highscore.getScore(songHighscore, curDifficulty);
 		#end
 
 		switch (curDifficulty)
@@ -261,6 +268,11 @@ class FreeplayState extends MusicBeatState
 
 	function changeSelection(change:Int = 0)
 	{
+		#if !switch
+		// NGio.logEvent('Fresh');
+		#end
+
+		// NGio.logEvent('Fresh');
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
 		curSelected += change;
@@ -271,9 +283,17 @@ class FreeplayState extends MusicBeatState
 			curSelected = 0;
 
 		// selector.y = (70 * curSelected) + 30;
+		
+		// adjusting the highscore song name to be compatible (changeSelection)
+		// would read original scores if we didn't change packages
+		var songHighscore = StringTools.replace(songs[curSelected].songName, " ", "-");
+		switch (songHighscore) {
+			case 'Dad-Battle': songHighscore = 'Dadbattle';
+			case 'Philly-Nice': songHighscore = 'Philly';
+		}
 
 		#if !switch
-		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
+		intendedScore = Highscore.getScore(songHighscore, curDifficulty);
 		// lerpScore = 0;
 		#end
 
