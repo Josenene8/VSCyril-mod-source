@@ -45,7 +45,10 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		
+		FlxGraphic.defaultPersist = true; //Alright, somebody in the community said this will help with caching... Hopefuly it doesn't break anything.
+		//Note to self though, this will break "destroyOnNotUse" so remember to disable persist on any graphics you want to destroy when not being used.
+
+
 
 		@:privateAccess
 		{
@@ -69,7 +72,8 @@ class TitleState extends MusicBeatState
 
 		super.create();
 
-	
+		// NGio.noLogin(APIStuff.API);
+
 		FlxG.save.bind('funkin', 'ninjamuffin99');
 
 		Highscore.load();
