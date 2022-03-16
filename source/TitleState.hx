@@ -24,6 +24,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
 
@@ -45,34 +46,17 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		#if android
-		FlxG.android.preventDefaultKeys = [BACK];
+		#if polymod
+		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
 
-		@:privateAccess
-		{
-			trace("Loaded " + openfl.Assets.getLibrary("default").assetsLoaded + " assets (DEFAULT)");
-		}
-		
 		PlayerSettings.init();
-
-		#if windows
-		DiscordClient.initialize();
-
-		Application.current.onExit.add (function (exitCode) {
-			DiscordClient.shutdown();
-		 });
-		 
-		#end
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		// DEBUG BULLSHIT
 
 		super.create();
-
-
-		// NGio.noLogin(APIStuff.API);
 
 		FlxG.save.bind('funkin', 'ninjamuffin99');
 
