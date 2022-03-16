@@ -45,10 +45,9 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		FlxGraphic.defaultPersist = true; //Alright, somebody in the community said this will help with caching... Hopefuly it doesn't break anything.
-		//Note to self though, this will break "destroyOnNotUse" so remember to disable persist on any graphics you want to destroy when not being used.
-
-
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
 
 		@:privateAccess
 		{
@@ -71,6 +70,7 @@ class TitleState extends MusicBeatState
 		// DEBUG BULLSHIT
 
 		super.create();
+
 
 		// NGio.noLogin(APIStuff.API);
 
