@@ -44,28 +44,29 @@ class TitleState extends MusicBeatState
 	var wackyImage:FlxSprite;
 
 	override public function create():Void
-	{       
-		#if android
-		FlxG.android.preventDefaultKeys = [BACK];
-		#end
-		
+	{      
                 @:privateAccess
 		{
 			trace("Loaded " + openfl.Assets.getLibrary("default").assetsLoaded + " assets (DEFAULT)");
 		}
+		
+		#if !cpp
+			
+		FlxG.save.bind('funkin', 'ninjamuffin99');
+			
 		PlayerSettings.init();
-	 
-                #if windows
-		DiscordClient.initialize();
-
-		Application.current.onExit.add (function (exitCode) {
-			DiscordClient.shutdown();
-		 });
-		 
+		
+	        KadeEngineData.initSave();
+		
 		#end
+
+		Highscore.load();
+
 		
 		curWacky = FlxG.random.getObject(getIntroTextShit());
-
+		
+                trace('hello');
+		
 		// DEBUG BULLSHIT
 
 		super.create();
