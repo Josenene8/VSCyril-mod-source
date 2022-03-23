@@ -81,9 +81,9 @@ class KadeEngineData
 		if (FlxG.save.data.customStrumLine == null)
 			FlxG.save.data.customStrumLine = 0;
 
-		
+		Conductor.recalculateTimings();
 		PlayerSettings.player1.controls.loadKeyBinds();
-		
+		KeyBinds.keyCheck();
 
 		Main.watermarks = FlxG.save.data.watermark;
 
