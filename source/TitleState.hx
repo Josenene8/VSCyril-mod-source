@@ -83,8 +83,7 @@ class TitleState extends MusicBeatState
 		#end
 		
 		FlxG.save.bind('funkin', 'ninjamuffin99');
-	 
-                KadeEngineData.initSave();
+
 	 
 		Highscore.load();
 
