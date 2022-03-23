@@ -44,21 +44,48 @@ class TitleState extends MusicBeatState
 	var wackyImage:FlxSprite;
 
 	override public function create():Void
-	{
+	{       #if android
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
+		
 		#if polymod
 		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
-
+			
+			
+		
+                @:privateAccess
+		{
+			trace("Loaded " + openfl.Assets.getLibrary("default").assetsLoaded + " assets (DEFAULT)");
+		}
 		PlayerSettings.init();
+	 
+                #if windows
+		DiscordClient.initialize();
 
+		Application.current.onExit.add (function (exitCode) {
+			DiscordClient.shutdown();
+		 });
+		 
+		#end
+		
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		// DEBUG BULLSHIT
 
 		super.create();
+	 
+                // NGio.noLogin(APIStuff.API);
 
+		#if ng
+		var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
+		trace('NEWGROUNDS LOL');
+		#end
+		
 		FlxG.save.bind('funkin', 'ninjamuffin99');
-
+	 
+                KadeEngineData.initSave();
+	 
 		Highscore.load();
 
 		if (FlxG.save.data.weekUnlocked != null)
@@ -83,15 +110,6 @@ class TitleState extends MusicBeatState
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 		{
 			startIntro();
-		});
-		#end
-
-		#if desktop
-		DiscordClient.initialize();
-
-		Application.current.onExit.add(function(exitCode)
-		{
-			DiscordClient.shutdown();
 		});
 		#end
 	}
